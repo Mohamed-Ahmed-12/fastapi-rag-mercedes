@@ -1,0 +1,11 @@
+share/
+scripts/
+Lib/
+__pycache__/
+venv/
+*.cfg
+*.egg-info/
+Include/
+
+.env
+
