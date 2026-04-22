@@ -1,7 +1,6 @@
 
-from rag.generation import generate_response
+from rag.retrieval import run_retrieval_generation_pipeline
 from rag.indexing import run_indexing_pipeline
-from rag.retrieval import get_relevant_information
 
 
 if __name__ == "__main__":
@@ -10,15 +9,10 @@ if __name__ == "__main__":
     
     user_input = input("Enter your question about the manual (or 'exit' to quit): ")    
     
-    # In a real application, you would likely want to loop this and allow multiple questions until the user decides to exit.
     while user_input.lower() != "exit":
-        relevant = get_relevant_information(user_input)
-        
-        if relevant:
-            print("\n--- Retrieved Information ---")
-            print(relevant)
-            response = generate_response(relevant, user_input)
-            print("\n--- Generated Response ---")
-            print(response)
+        response = run_retrieval_generation_pipeline(user_input)
+    
+        print("\n--- Generated Response ---")
+        print(response)
         
         user_input = input("Enter your question about the manual (or 'exit' to quit): ")

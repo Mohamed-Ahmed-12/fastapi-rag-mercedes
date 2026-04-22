@@ -1,11 +1,15 @@
 import os
+from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import ChatOpenAI
 
+load_dotenv()
+
 DB_DIR = "I:\\langchain\\ai\\mercedes_db"
-MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
+
 
 def get_embedding_model():
+    MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "sentence-transformers/all-mpnet-base-v2")
     try:
         return HuggingFaceEmbeddings(model_name=MODEL_NAME)
     except Exception as e:
